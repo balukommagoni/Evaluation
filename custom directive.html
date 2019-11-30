@@ -1,0 +1,29 @@
+<html>
+<body>
+<div ng-app = "app" ng-controller = "myController">
+<employee name = "Mahesh"></employee><br/>
+<employee name = "Piyush"></employee>
+</div>
+<script src = "http://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+<script>
+var detailsApp= angular.module("app", []);
+detailsApp.directive('employee', function() {
+var directive = {};
+directive.restrict = 'E';
+directive.template = "employee: <b>{{employee.name}}</b> , Id: <b>{{employee.id}}</b>";
+directive.scope = {
+employee: "=name"
+}
+return directive;
+});
+detailsApp.controller('myController', function($scope) {
+$scope.Mahesh = {};
+$scope.Mahesh.name = "abc";
+$scope.Mahesh.id = 1;
+$scope.Piyush = {};
+$scope.Piyush.name = "xyz";
+$scope.Piyush.id = 2;
+});
+</script>
+</body>
+</html>
