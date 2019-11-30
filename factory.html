@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.12/angular.min.js"></script>
+  </head>
+  <body ng-app="app" ng-controller="Ctrl">
+    <p>{{state}}</p>
+    <script>
+    angular.module('app',[]).controller('Ctrl',['$scope', 'myFactory', function($scope, myFactory) {
+    myFactory.setProperty('newstate');
+    $scope.state = myFactory.getProperty();
+}]).factory('myFactory', function(){
+  var property;
+  var factory = {};
+
+  factory.setProperty = function(pro){
+    property = pro; 
+  }
+  
+  factory.getProperty = function(){
+    return property;
+  }
+  
+  return factory;
+});
+    </script>
+  </body>
+</html>
