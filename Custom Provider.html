@@ -1,0 +1,30 @@
+ <html>
+       <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.5/angular.min.js"></script>
+ <body>
+    <div ng-app="app" ng-controller="myController">
+    {{name}}
+    </div>
+<script>
+var app=angular.module('app', []);
+app.controller("myController", function ($scope, globalsetting) {
+    $scope.name = globalsetting.name;
+   });
+ app.config(function (globalsettingProvider) {
+    globalsettingProvider.setname("AngularJs");
+   });
+app.provider('globalsetting', function () {
+    var name = "java";
+    this.setname = function (value) {
+    name = value; 
+    }
+    this.$get = function () {
+    return {
+    name: name
+    };
+    }
+   });
+</script>
+</body>
+</html>  
+
+ 
