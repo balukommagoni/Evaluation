@@ -1,0 +1,180 @@
+<html>
+<body>
+<button class="tablink" onclick="openPage('Home')" id="defaultOpen">Home</button>
+<button class="tablink" onclick="openTab('Cart')">Cart</button>
+
+<div id="Home" class="tabcontent">
+  <h3>Home</h3>
+</div>
+
+<div id="Cart" class="tabcontent">
+  <h3>Cart</h3>
+</div>
+<script>
+    var pageName,output=[],i,tabcontent,tablinks,codeExecuted=true,code=true,j=0;
+        function openPage(pageName) {
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+          }
+          document.getElementById(pageName).style.display = "block";
+          
+  //home tab
+  if(codeExecuted){
+  var home=document.getElementById('Home'); 
+  var container=document.createElement('container');
+  container.className="container";
+  document.body.append(container);
+  home.append(container);
+  var checkbox=document.createElement('input');
+  checkbox.type="checkbox";
+  checkbox.className="checkbox";
+  container.append(checkbox);
+  var img=document.createElement('img');
+  img.setAttribute("src", "img1.jpg");
+  img.setAttribute("width", "175");
+  img.setAttribute("height", "200");
+  img.className="img";
+  container.append(img);
+
+  var checkbox=document.createElement('input');
+  checkbox.type="checkbox";
+  checkbox.className="checkbox";
+  container.append(checkbox);
+  var img2=document.createElement('img');
+  img2.setAttribute("src", "img2.jpg");
+  img2.setAttribute("width", "175");
+  img2.setAttribute("height", "200");
+  img2.className="img2";
+  container.append(img2);
+
+  var checkbox=document.createElement('input');
+  checkbox.type="checkbox";
+  checkbox.className="checkbox";
+  container.append(checkbox);
+  var img3=document.createElement('img');
+  img3.setAttribute("src", "img3.jpg");
+  img3.setAttribute("width", "175");
+  img3.setAttribute("height", "200");
+  img3.className="img3";
+  container.append(img3);
+  
+  var button=document.createElement('button');
+  button.id="button";
+  button.innerText="Add To Cart";
+  button.onclick=AddToCart;
+  container.append(button);
+ 
+  function AddToCart(){
+    var i;
+    var checkb = document.getElementsByClassName('checkbox');
+    for (i = 0; i < checkb.length; i++) {
+      if(checkb[i].checked){
+        checkb[i].checked="";
+        output[j]=checkb[i].nextSibling;
+            j++;
+          }
+  }
+}
+  codeExecuted=false;
+}
+}
+        
+function openTab(pageName) {
+          var i, tabcontent, tablinks;
+          tabcontent = document.getElementsByClassName("tabcontent");
+          for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+          }
+          tablinks = document.getElementsByClassName("tablink");
+          for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].style.backgroundColor = "";
+          }
+          document.getElementById(pageName).style.display = "block";
+
+  //cart tab
+  if(code){
+    j=0;
+  var cart=document.getElementById('Cart'); 
+  var contain=document.createElement('container');
+  contain.className="contain";
+  document.body.append(contain);
+  cart.append(contain);
+  var check=document.createElement('input');
+  check.type="checkbox";
+  check.className="check";
+  contain.append(check);
+  var image=document.createElement('img');
+  image.setAttribute("width", "175");
+  image.setAttribute("height", "200");
+  image.className="img";
+  if(j<output.length){
+  image.src=output[j].attributes[0].nodeValue;
+  }
+  j++;
+  contain.append(image);
+
+  var check=document.createElement('input');
+  check.type="checkbox";
+  check.className="check";
+  contain.append(check);
+  var image2=document.createElement('img');
+  image2.setAttribute("width", "175");
+  image2.setAttribute("height", "200");
+  image2.className="img";
+  if(j<output.length){
+  image2.src=output[j].attributes[0].nodeValue;
+  }
+  j++;
+  contain.append(image2);
+
+  var check=document.createElement('input');
+  check.type="checkbox";
+  check.className="check";
+  contain.append(check);
+  var image3=document.createElement('img');
+  image3.setAttribute("width", "175");
+  image3.setAttribute("height", "200");
+  image3.className="img";
+  if(j<output.length){
+  image3.src=output[j].attributes[0].nodeValue;
+  }
+  j++;
+  contain.append(image3);
+  
+
+  var but=document.createElement('button');
+  but.id="but";
+  but.innerText="Remove";
+  but.onclick=Remove;
+  contain.append(but);
+ 
+  function Remove(){
+    var i,j,array=[];
+    var checkbx = document.getElementsByClassName('check');
+    for (i = 0; i < checkbx.length; i++) {
+      array.push(checkbx[i]);}
+      for (j = 0; j < checkbx.length; j++) {
+        for(k=0;k<array.length;k++){
+      if(checkbx[j].checked && array[k].checked){
+        if(checkbx[j]==array[k]){
+          checkbx[j].nextSibling.remove();
+          checkbx[j].remove();
+        }
+        }
+       }
+      }
+     }
+    code=false;
+  }
+}
+
+document.getElementById("defaultOpen").onclick();
+</script>
+</body>
+</html> 
+
